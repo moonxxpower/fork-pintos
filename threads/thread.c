@@ -14,6 +14,7 @@
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
+#include <list.h>
 
 /* Random value for struct thread's `magic' member.
    Used to detect stack overflow.  See the big comment at the top
@@ -27,6 +28,7 @@
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
+static struct list sleep_list;
 
 /* Idle thread. */
 static struct thread *idle_thread;
@@ -62,6 +64,7 @@ static void init_thread (struct thread *, const char *name, int priority);
 static void do_schedule(int status);
 static void schedule (void);
 static tid_t allocate_tid (void);
+int64_t check_min_gbl_tick(struct list* list_);
 
 /* Returns true if T appears to point to a valid thread. */
 #define is_thread(t) ((t) != NULL && (t)->magic == THREAD_MAGIC)
@@ -79,6 +82,8 @@ static tid_t allocate_tid (void);
 // setup temporal gdt first.
 static uint64_t gdt[3] = { 0, 0x00af9a000000ffff, 0x00cf92000000ffff };
 
+int64_t min_gbl_tick = INT64_MAX;
+
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
@@ -94,6 +99,7 @@ static uint64_t gdt[3] = { 0, 0x00af9a000000ffff, 0x00cf92000000ffff };
    finishes. */
 void
 thread_init (void) {
+	printf("스레드 초기화\n");
 	ASSERT (intr_get_level () == INTR_OFF);
 
 	/* Reload the temporal gdt for the kernel
@@ -108,19 +114,22 @@ thread_init (void) {
 	/* Init the globla thread context */
 	lock_init (&tid_lock);
 	list_init (&ready_list);
+	list_init (&sleep_list); // 블록 리스트 초기화 추가
 	list_init (&destruction_req);
 
 	/* Set up a thread structure for the running thread. */
-	initial_thread = running_thread ();
-	init_thread (initial_thread, "main", PRI_DEFAULT);
-	initial_thread->status = THREAD_RUNNING;
-	initial_thread->tid = allocate_tid ();
+	initial_thread = running_thread (); // 초기 쓰레드 초기화
+	init_thread (initial_thread, "main", PRI_DEFAULT); // 이름 및 기타 초기화
+	initial_thread->status = THREAD_RUNNING; // 상태 러닝으로 변경
+	initial_thread->tid = allocate_tid (); // tid 부여
+	printf("initial_thread 이름:%s, 상태:%d, 번호:%d\n", initial_thread->name,initial_thread->status,initial_thread->tid );
 }
 
 /* Starts preemptive thread scheduling by enabling interrupts.
    Also creates the idle thread. */
 void
 thread_start (void) {
+	printf("스레드 시작\n");
 	/* Create the idle thread. */
 	struct semaphore idle_started;
 	sema_init (&idle_started, 0);
@@ -265,6 +274,7 @@ thread_current (void) {
 	   recursion can cause stack overflow. */
 	ASSERT (is_thread (t));
 	ASSERT (t->status == THREAD_RUNNING);
+	//debug_backtrace();
 
 	return t;
 }
@@ -300,7 +310,6 @@ thread_yield (void) {
 	enum intr_level old_level;
 
 	ASSERT (!intr_context ());
-
 	old_level = intr_disable ();
 	if (curr != idle_thread)
 		list_push_back (&ready_list, &curr->elem);
@@ -527,6 +536,8 @@ thread_launch (struct thread *th) {
  * It's not safe to call printf() in the schedule(). */
 static void
 do_schedule(int status) {
+	// struct thread *curr = thread_current();
+	//printf("일하러온 스레드:%s, 상태: %d\n",curr->name,curr->status);
 	ASSERT (intr_get_level () == INTR_OFF);
 	ASSERT (thread_current()->status == THREAD_RUNNING);
 	while (!list_empty (&destruction_req)) {
@@ -587,4 +598,64 @@ allocate_tid (void) {
 	lock_release (&tid_lock);
 
 	return tid;
+}
+
+void thread_sleep (int64_t tick){
+	struct thread *curr = thread_current (); // 현재 쓰레드 가져옴
+	enum intr_level old_level;
+
+	ASSERT (!intr_context ());
+	old_level = intr_disable ();
+	if (curr != idle_thread){
+		// printf("%s 재움\n",curr->name);
+		curr->wakeup_tick= tick;
+		if (min_gbl_tick>curr->wakeup_tick){
+			min_gbl_tick = curr->wakeup_tick;
+		}
+		printf("잘놈: %s, 일어날 시간:%lld \n",curr->name, curr->wakeup_tick);
+		list_push_back (&sleep_list, &curr->elem);
+		//list_sort(&sleep_list,);
+		thread_block();
+	}
+	//do_schedule (THREAD_READY);
+	intr_set_level (old_level);
+}
+
+void check_wake_up (int64_t tick){
+	struct list_elem *e;
+	enum intr_level old_level;
+	old_level = intr_disable ();
+	e = list_begin(&sleep_list);
+	if(tick>=min_gbl_tick){
+	printf("현재 시간: %lld, gbl_tick:%lld\n", tick, min_gbl_tick);
+		while (e != list_end(&sleep_list)) {
+			struct thread *thr = list_entry(e,struct thread, elem);
+			if (thr->wakeup_tick<= tick){
+				printf("일어날놈: %s\n",thr->name);
+				e = list_remove(&thr->elem);
+				min_gbl_tick = check_min_gbl_tick(&sleep_list);
+				thread_unblock(thr);
+			}
+			else{
+				e = list_next(e);
+			}
+		}
+		intr_set_level (old_level);
+	}
+}
+
+int64_t check_min_gbl_tick(struct list* list_){
+	struct list_elem *e = list_begin(list_);
+	enum intr_level old_level;
+	old_level = intr_disable ();
+	int64_t min_=INT64_MAX;
+	while (e != list_end(list_)) {
+			struct thread *thr = list_entry(e,struct thread, elem);
+			if (thr->wakeup_tick<min_){
+				min_=thr->wakeup_tick;
+			}
+			e= list_next(e);
+		}
+		intr_set_level (old_level);
+	return min_;
 }
