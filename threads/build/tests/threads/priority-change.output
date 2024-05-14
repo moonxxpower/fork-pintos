@@ -7,17 +7,32 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  78,336,000 loops/s.
 Boot complete.
 Executing 'priority-change':
 (priority-change) begin
 (priority-change) Creating a high-priority thread 2.
-(priority-change) Thread 2 should have just lowered its priority.
-(priority-change) Thread 2 should have just exited.
-(priority-change) end
-Execution of 'priority-change' complete.
-Timer: 52 ticks
-Thread: 0 idle ticks, 54 kernel ticks, 0 user ticks
-Console: 687 characters output
-Keyboard: 0 keys pressed
+main(넣을거):31, thread 2(비교군):32
+(priority-change) Thmain(넣을거):31, thread 2(비교군):32
+read 2 should havmain(넣을거):31, thread 2(비교군):32
+e just lowered its prmain(넣을거):31, thread 2(비교군):32
+iority.
+main(넣을거):29, thread 2(비교군):32
+(priority-change)main(넣을거):29, thread 2(비교군):32
+ Thread 2 should have jmain(넣을거):29, thread 2(비교군):32
+ust exited.
+(prioritmain(넣을거):29, thread 2(비교군):32
+y-change) end
+Execution main(넣을거):29, thread 2(비교군):32
+of 'priority-change' complete.
+Timemain(넣을거):29, thread 2(비교군):32
+r: 71 ticks
+Thread: 0 imain(넣을거):29, thread 2(비교군):32
+dle ticks, 75 kernel timain(넣을거):29, thread 2(비교군):32
+cks, 0 user ticmain(넣을거):29, thread 2(비교군):32
+ks
+Console: 1245 characters outputmain(넣을거):29, thread 2(비교군):32
+
+Keyboard: 0 keys pressemain(넣을거):29, thread 2(비교군):32
+d
 Powering off...

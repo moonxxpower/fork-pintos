@@ -7,7 +7,7 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  52,377,600 loops/s.
+Calibrating timer...  65,433,600 loops/s.
 Boot complete.
 Executing 'alarm-multiple':
 (alarm-multiple) begin
@@ -16,6 +16,123 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 1 sleeps 20 ticks each time, and so on.
 (alarm-multiple) If successful, product of iteration count and
 (alarm-multiple) sleep duration will appear in nondescending order.
+thread 1(넣을거):31, thread 0(비교군):31
+main(넣을거):31, thread 0(비교군):31
+main(넣을거):31, thread 1(비교군):31
+잘놈: thread 0, 일어날 시간:169 
+잘놈: thread 1, 일어날 시간:179 
+thread 3(넣을거):31, thread 2(비교군):31
+main(넣을거):31, thread 2(비교군):31
+main(넣을거):31, thread 3(비교군):31
+잘놈: thread 2, 일어날 시간:189 
+잘놈: thread 3, 일어날 시간:199 
+잘놈: main, 일어날 시간:624 
+잘놈: thread 4, 일어날 시간:209 
+현재 시간: 169, gbl_tick:169
+일어날놈: thread 0
+잘놈: thread 0, 일어날 시간:179 
+현재 시간: 179, gbl_tick:179
+일어날놈: thread 1
+일어날놈: thread 0
+thread 0(넣을거):31, thread 1(비교군):31
+잘놈: thread 1, 일어날 시간:199 
+잘놈: thread 0, 일어날 시간:189 
+현재 시간: 189, gbl_tick:189
+일어날놈: thread 2
+일어날놈: thread 0
+thread 0(넣을거):31, thread 2(비교군):31
+잘놈: thread 2, 일어날 시간:219 
+잘놈: thread 0, 일어날 시간:199 
+현재 시간: 199, gbl_tick:199
+일어날놈: thread 3
+일어날놈: thread 1
+thread 1(넣을거):31, thread 3(비교군):31
+일어날놈: thread 0
+thread 0(넣을거):31, thread 3(비교군):31
+thread 0(넣을거):31, thread 1(비교군):31
+잘놈: thread 3, 일어날 시간:239 
+잘놈: thread 1, 일어날 시간:219 
+잘놈: thread 0, 일어날 시간:209 
+현재 시간: 209, gbl_tick:209
+일어날놈: thread 4
+일어날놈: thread 0
+thread 0(넣을거):31, thread 4(비교군):31
+잘놈: thread 4, 일어날 시간:259 
+잘놈: thread 0, 일어날 시간:219 
+현재 시간: 219, gbl_tick:219
+일어날놈: thread 2
+일어날놈: thread 1
+thread 1(넣을거):31, thread 2(비교군):31
+일어날놈: thread 0
+thread 0(넣을거):31, thread 2(비교군):31
+thread 0(넣을거):31, thread 1(비교군):31
+잘놈: thread 2, 일어날 시간:249 
+잘놈: thread 1, 일어날 시간:239 
+잘놈: thread 0, 일어날 시간:229 
+현재 시간: 229, gbl_tick:229
+일어날놈: thread 0
+현재 시간: 239, gbl_tick:239
+일어날놈: thread 3
+일어날놈: thread 1
+thread 1(넣을거):31, thread 3(비교군):31
+잘놈: thread 3, 일어날 시간:279 
+잘놈: thread 1, 일어날 시간:259 
+현재 시간: 249, gbl_tick:249
+일어날놈: thread 2
+잘놈: thread 2, 일어날 시간:279 
+현재 시간: 259, gbl_tick:259
+일어날놈: thread 4
+일어날놈: thread 1
+thread 1(넣을거):31, thread 4(비교군):31
+잘놈: thread 4, 일어날 시간:309 
+잘놈: thread 1, 일어날 시간:279 
+현재 시간: 279, gbl_tick:279
+일어날놈: thread 3
+일어날놈: thread 2
+thread 2(넣을거):31, thread 3(비교군):31
+일어날놈: thread 1
+thread 1(넣을거):31, thread 3(비교군):31
+thread 1(넣을거):31, thread 2(비교군):31
+잘놈: thread 3, 일어날 시간:320 
+잘놈: thread 2, 일어날 시간:309 
+잘놈: thread 1, 일어날 시간:299 
+현재 시간: 299, gbl_tick:299
+일어날놈: thread 1
+현재 시간: 309, gbl_tick:309
+일어날놈: thread 4
+일어날놈: thread 2
+thread 2(넣을거):31, thread 4(비교군):31
+잘놈: thread 4, 일어날 시간:359 
+잘놈: thread 2, 일어날 시간:339 
+현재 시간: 320, gbl_tick:320
+일어날놈: thread 3
+잘놈: thread 3, 일어날 시간:359 
+현재 시간: 339, gbl_tick:339
+일어날놈: thread 2
+잘놈: thread 2, 일어날 시간:369 
+현재 시간: 359, gbl_tick:359
+일어날놈: thread 4
+일어날놈: thread 3
+thread 3(넣을거):31, thread 4(비교군):31
+잘놈: thread 4, 일어날 시간:409 
+잘놈: thread 3, 일어날 시간:399 
+현재 시간: 369, gbl_tick:369
+일어날놈: thread 2
+현재 시간: 399, gbl_tick:399
+일어날놈: thread 3
+잘놈: thread 3, 일어날 시간:439 
+현재 시간: 409, gbl_tick:409
+일어날놈: thread 4
+잘놈: thread 4, 일어날 시간:459 
+현재 시간: 439, gbl_tick:439
+일어날놈: thread 3
+현재 시간: 459, gbl_tick:459
+일어날놈: thread 4
+잘놈: thread 4, 일어날 시간:509 
+현재 시간: 509, gbl_tick:509
+일어날놈: thread 4
+현재 시간: 624, gbl_tick:624
+일어날놈: main
 (alarm-multiple) thread 0: duration=10, iteration=1, product=10
 (alarm-multiple) thread 1: duration=20, iteration=1, product=20
 (alarm-multiple) thread 0: duration=10, iteration=2, product=20
@@ -53,8 +170,8 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 4: duration=50, iteration=7, product=350
 (alarm-multiple) end
 Execution of 'alarm-multiple' complete.
-Timer: 824 ticks
-Thread: 550 idle ticks, 276 kernel ticks, 0 user ticks
-Console: 3079 characters output
+Timer: 842 ticks
+Thread: 525 idle ticks, 319 kernel ticks, 0 user ticks
+Console: 7116 characters output
 Keyboard: 0 keys pressed
 Powering off...

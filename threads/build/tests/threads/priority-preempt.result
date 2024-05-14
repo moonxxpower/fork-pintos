@@ -13,7 +13,9 @@ Acceptable output:
   (priority-preempt) end
 Differences in `diff -u' format:
   (priority-preempt) begin
-- (priority-preempt) Thread high-priority iteration 0
++ 현재 우선순위:31, 새거 우선순위:32
++ 새거가 더 우선순위 높음
+  (priority-preempt) Thread high-priority iteration 0
 - (priority-preempt) Thread high-priority iteration 1
 - (priority-preempt) Thread high-priority iteration 2
 - (priority-preempt) Thread high-priority iteration 3

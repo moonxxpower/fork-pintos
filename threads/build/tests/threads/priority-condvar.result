@@ -36,16 +36,36 @@ Acceptable output:
   (priority-condvar) end
 Differences in `diff -u' format:
   (priority-condvar) begin
-- (priority-condvar) Thread priority 23 starting.
-- (priority-condvar) Thread priority 22 starting.
-- (priority-condvar) Thread priority 21 starting.
-- (priority-condvar) Thread priority 30 starting.
-- (priority-condvar) Thread priority 29 starting.
-- (priority-condvar) Thread priority 28 starting.
-- (priority-condvar) Thread priority 27 starting.
-- (priority-condvar) Thread priority 26 starting.
-- (priority-condvar) Thread priority 25 starting.
-- (priority-condvar) Thread priority 24 starting.
++ 현재 우선순위:0, 새거 우선순위:23
++ 새거가 더 우선순위 높음
+  (priority-condvar) Thread priority 23 starting.
+  (priority-condvar) Thread priority 22 starting.
++ 현재 우선순위:0, 새거 우선순위:22
++ 새거가 더 우선순위 높음
++ 현재 우선순위:0, 새거 우선순위:21
++ 새거가 더 우선순위 높음
+  (priority-condvar) Thread priority 21 starting.
+  (priority-condvar) Thread priority 30 starting.
++ 현재 우선순위:0, 새거 우선순위:30
++ 새거가 더 우선순위 높음
++ 현재 우선순위:0, 새거 우선순위:29
++ 새거가 더 우선순위 높음
+  (priority-condvar) Thread priority 29 starting.
+  (priority-condvar) Thread priority 28 starting.
++ 현재 우선순위:0, 새거 우선순위:28
++ 새거가 더 우선순위 높음
++ 현재 우선순위:0, 새거 우선순위:27
++ 새거가 더 우선순위 높음
+  (priority-condvar) Thread priority 27 starting.
+  (priority-condvar) Thread priority 26 starting.
++ 현재 우선순위:0, 새거 우선순위:26
++ 새거가 더 우선순위 높음
++ 현재 우선순위:0, 새거 우선순위:25
++ 새거가 더 우선순위 높음
+  (priority-condvar) Thread priority 25 starting.
+  (priority-condvar) Thread priority 24 starting.
++ 현재 우선순위:0, 새거 우선순위:24
++ 새거가 더 우선순위 높음
   (priority-condvar) Signaling...
 - (priority-condvar) Thread priority 30 woke up.
   (priority-condvar) Signaling...

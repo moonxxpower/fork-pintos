@@ -1,1 +1,150 @@
-PASS
+FAIL
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (alarm-simultaneous) begin
+  (alarm-simultaneous) Creating 3 threads to sleep 5 times each.
+  (alarm-simultaneous) Each thread sleeps 10 ticks each time.
+  (alarm-simultaneous) Within an iteration, all threads should wake up on the same tick.
+  (alarm-simultaneous) iteration 0, thread 0: woke up after 10 ticks
+  (alarm-simultaneous) iteration 0, thread 1: woke up 0 ticks later
+  (alarm-simultaneous) iteration 0, thread 2: woke up 0 ticks later
+  (alarm-simultaneous) iteration 1, thread 0: woke up 10 ticks later
+  (alarm-simultaneous) iteration 1, thread 1: woke up 0 ticks later
+  (alarm-simultaneous) iteration 1, thread 2: woke up 0 ticks later
+  (alarm-simultaneous) iteration 2, thread 0: woke up 10 ticks later
+  (alarm-simultaneous) iteration 2, thread 1: woke up 0 ticks later
+  (alarm-simultaneous) iteration 2, thread 2: woke up 0 ticks later
+  (alarm-simultaneous) iteration 3, thread 0: woke up 10 ticks later
+  (alarm-simultaneous) iteration 3, thread 1: woke up 0 ticks later
+  (alarm-simultaneous) iteration 3, thread 2: woke up 0 ticks later
+  (alarm-simultaneous) iteration 4, thread 0: woke up 10 ticks later
+  (alarm-simultaneous) iteration 4, thread 1: woke up 0 ticks later
+  (alarm-simultaneous) iteration 4, thread 2: woke up 0 ticks later
+  (alarm-simultaneous) end
+Differences in `diff -u' format:
+  (alarm-simultaneous) begin
+  (alarm-simultaneous) Creating 3 threads to sleep 5 times each.
+  (alarm-simultaneous) Each thread sleeps 10 ticks each time.
+  (alarm-simultaneous) Within an iteration, all threads should wake up on the same tick.
+- (alarm-simultaneous) iteration 0, thread 0: woke up after 10 ticks
+- (alarm-simultaneous) iteration 0, thread 1: woke up 0 ticks later
+- (alarm-simultaneous) iteration 0, thread 2: woke up 0 ticks later
+- (alarm-simultaneous) iteration 1, thread 0: woke up 10 ticks later
+- (alarm-simultaneous) iteration 1, thread 1: woke up 0 ticks later
+- (alarm-simultaneous) iteration 1, thread 2: woke up 0 ticks later
+- (alarm-simultaneous) iteration 2, thread 0: woke up 10 ticks later
+- (alarm-simultaneous) iteration 2, thread 1: woke up 0 ticks later
+- (alarm-simultaneous) iteration 2, thread 2: woke up 0 ticks later
+- (alarm-simultaneous) iteration 3, thread 0: woke up 10 ticks later
+- (alarm-simultaneous) iteration 3, thread 1: woke up 0 ticks later
+- (alarm-simultaneous) iteration 3, thread 2: woke up 0 ticks later
+- (alarm-simultaneous) iteration 4, thread 0: woke up 10 ticks later
+- (alarm-simultaneous) iteration 4, thread 1: woke up 0 ticks later
+- (alarm-simultaneous) iteration 4, thread 2: woke up 0 ticks later
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ main(넣을거):31, thread 0(비교군):31
++ main(넣을거):31, thread 1(비교군):31
++ main(넣을거):31, thread 2(비교군):31
++ 잘놈: thread 0, 일어날 시간:61 
++ 현재 시간: 61, gbl_tick:61
++ 일어날놈: thread 0
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 0(넣을거):31, main(비교군):31
++ 잘놈: thread 1, 일어날 시간:64 
++ 현재 시간: 64, gbl_tick:64
++ 일어날놈: thread 1
++ thread 1(넣을거):31, main(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ 잘놈: thread 2, 일어날 시간:67 
++ 현재 시간: 67, gbl_tick:67
++ 일어날놈: thread 2
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ 잘놈: main, 일어날 시간:319 
++ 잘놈: thread 0, 일어날 시간:164 
++ 잘놈: thread 1, 일어날 시간:164 
++ 잘놈: thread 2, 일어날 시간:164 
++ 현재 시간: 164, gbl_tick:164
++ 일어날놈: thread 0
++ 일어날놈: thread 1
++ thread 1(넣을거):31, thread 0(비교군):31
++ 일어날놈: thread 2
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ 잘놈: thread 0, 일어날 시간:184 
++ 잘놈: thread 1, 일어날 시간:184 
++ 현재 시간: 184, gbl_tick:184
++ 일어날놈: thread 0
++ 일어날놈: thread 1
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ 잘놈: thread 2, 일어날 시간:194 
++ 잘놈: thread 0, 일어날 시간:194 
++ 잘놈: thread 1, 일어날 시간:194 
++ 현재 시간: 194, gbl_tick:194
++ 일어날놈: thread 2
++ 일어날놈: thread 0
++ thread 0(넣을거):31, thread 2(비교군):31
++ 일어날놈: thread 1
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ 잘놈: thread 2, 일어날 시간:204 
++ 잘놈: thread 0, 일어날 시간:204 
++ 잘놈: thread 1, 일어날 시간:204 
++ 현재 시간: 204, gbl_tick:204
++ 일어날놈: thread 2
++ 일어날놈: thread 0
++ thread 0(넣을거):31, thread 2(비교군):31
++ 일어날놈: thread 1
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 0(비교군):31
++ thread 2(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 1(비교군):31
++ thread 0(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 2(비교군):31
++ thread 1(넣을거):31, thread 0(비교군):31
++ 현재 시간: 319, gbl_tick:319
++ 일어날놈: main
++ (alarm-simultaneous) iteration 0, thread 0: woke up after 13 ticks
++ (alarm-simultaneous) iteration 0, thread 1: woke up 3 ticks later
++ (alarm-simultaneous) iteration 0, thread 2: woke up 2 ticks later
++ (alarm-simultaneous) iteration 1, thread 0: woke up 3 ticks later
++ (alarm-simultaneous) iteration 1, thread 1: woke up 2 ticks later
++ (alarm-simultaneous) iteration 1, thread 2: woke up 2 ticks later
++ (alarm-simultaneous) iteration 2, thread 0: woke up 6 ticks later
++ (alarm-simultaneous) iteration 2, thread 1: woke up 1 ticks later
++ (alarm-simultaneous) iteration 2, thread 2: woke up 2 ticks later
++ (alarm-simultaneous) iteration 3, thread 0: woke up 7 ticks later
++ (alarm-simultaneous) iteration 3, thread 1: woke up 2 ticks later
++ (alarm-simultaneous) iteration 3, thread 2: woke up 2 ticks later
++ (alarm-simultaneous) iteration 4, thread 0: woke up 8 ticks later
++ (alarm-simultaneous) iteration 4, thread 1: woke up 2 ticks later
++ (alarm-simultaneous) iteration 4, thread 2: woke up 2 ticks later
+  (alarm-simultaneous) end

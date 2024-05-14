@@ -7,10 +7,41 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  71,987,200 loops/s.
+현재 우선순위:31, 새거 우선순위:0
+Calibrating timer...  54,374,400 loops/s.
 Boot complete.
 Executing 'priority-condvar':
 (priority-condvar) begin
+현재 우선순위:0, 새거 우선순위:23
+새거가 더 우선순위 높음
+(priority-condvar) Thread priority 23 starting.
+(priority-condvar) Thread priority 22 starting.
+현재 우선순위:0, 새거 우선순위:22
+새거가 더 우선순위 높음
+현재 우선순위:0, 새거 우선순위:21
+새거가 더 우선순위 높음
+(priority-condvar) Thread priority 21 starting.
+(priority-condvar) Thread priority 30 starting.
+현재 우선순위:0, 새거 우선순위:30
+새거가 더 우선순위 높음
+현재 우선순위:0, 새거 우선순위:29
+새거가 더 우선순위 높음
+(priority-condvar) Thread priority 29 starting.
+(priority-condvar) Thread priority 28 starting.
+현재 우선순위:0, 새거 우선순위:28
+새거가 더 우선순위 높음
+현재 우선순위:0, 새거 우선순위:27
+새거가 더 우선순위 높음
+(priority-condvar) Thread priority 27 starting.
+(priority-condvar) Thread priority 26 starting.
+현재 우선순위:0, 새거 우선순위:26
+새거가 더 우선순위 높음
+현재 우선순위:0, 새거 우선순위:25
+새거가 더 우선순위 높음
+(priority-condvar) Thread priority 25 starting.
+(priority-condvar) Thread priority 24 starting.
+현재 우선순위:0, 새거 우선순위:24
+새거가 더 우선순위 높음
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
@@ -23,8 +54,8 @@ Executing 'priority-condvar':
 (priority-condvar) Signaling...
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-Timer: 69 ticks
-Thread: 0 idle ticks, 70 kernel ticks, 0 user ticks
-Console: 840 characters output
+Timer: 229 ticks
+Thread: 0 idle ticks, 232 kernel ticks, 0 user ticks
+Console: 2168 characters output
 Keyboard: 0 keys pressed
 Powering off...

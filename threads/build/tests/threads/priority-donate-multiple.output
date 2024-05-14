@@ -7,20 +7,49 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  58,880,000 loops/s.
+Calibrating timer...  78,540,800 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple':
 (priority-donate-multiple) begin
-(priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
-(priority-donate-multiple) Main thread should have priority 33.  Actual priority: 31.
-(priority-donate-multiple) Thread b should have just finished.
-(priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
-(priority-donate-multiple) Thread a should have just finished.
-(priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
+main(넣을거):31, a(비교군):32
+(priority-donate-mmain(넣을거):31, a(비교군):32
+ultiple) Main thread should hamain(넣을거):31, a(비교군):32
+ve priority 32.  Actual priority: main(넣을거):31, a(비교군):32
+31.
+b(넣을거):33, a(비교군):32
+main(넣을거):31, a(비교군):32
+(priority-donate-multiple) Mmain(넣을거):31, a(비교군):32
+ain thread should have priority 33.  Actualmain(넣을거):31, a(비교군):32
+ priority: 31.
+(priomain(넣을거):31, a(비교군):32
+rity-donate-multiple) Thread b shomain(넣을거):31, a(비교군):32
+uld have just finishedmain(넣을거):31, a(비교군):32
+.
+(priority-donatmain(넣을거):31, a(비교군):32
+e-multiple) Main thread shoulmain(넣을거):31, a(비교군):32
+d have priority 32.  Actual priormain(넣을거):31, a(비교군):32
+ity: 31.
+(priority-domain(넣을거):31, a(비교군):32
+nate-multiple) Threadmain(넣을거):31, a(비교군):32
+ a should have just finishemain(넣을거):31, a(비교군):32
+d.
+(priority-donate-multiplemain(넣을거):31, a(비교군):32
+) Main thread should have priormain(넣을거):31, a(비교군):32
+ity 31.  Actual priority: 31.
+main(넣을거):31, a(비교군):32
 (priority-donate-multiple) end
-Execution of 'priority-donate-multiple' complete.
-Timer: 87 ticks
-Thread: 0 idle ticks, 89 kernel ticks, 0 user ticks
-Console: 1030 characters output
-Keyboard: 0 keys pressed
-Powering off...
+main(넣을거):31, a(비교군):32
+Execution of 'priority-donate-main(넣을거):31, a(비교군):32
+multiple' complete.
+main(넣을거):31, a(비교군):32
+Timer: 117 ticks
+main(넣을거):31, a(비교군):32
+Thread: 0 idle tmain(넣을거):31, a(비교군):32
+icks, 121 kernel tickmain(넣을거):31, a(비교군):32
+s, 0 user ticks
+Console: 1965main(넣을거):31, a(비교군):32
+ characters output
+Keybmain(넣을거):31, a(비교군):32
+oard: 0 keys pressed
+Powering off...main(넣을거):31, a(비교군):32
+

@@ -11,16 +11,49 @@ Calibrating timer...  78,540,800 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) begin
-(priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 31.
-(priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
-(priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.(priority-donate-multiple2) Thread c finished.
+main(넣을거):31, a(비교군):34
+(priority-donate-multmain(넣을거):31, a(비교군):34
+iple2) Main thread should main(넣을거):31, a(비교군):34
+have priority 34.  Actual prioritmain(넣을거):31, a(비교군):34
+y: 31.
+c(넣을거):32, a(비교군):34
+main(넣을거):31, c(비교군):32
+b(넣을거):36, c(비교군):32
+b(넣을거):36, a(비교군):34
+main(넣을거):31, c(비교군):32
+main(넣을거):31, c(비교군):32
+(priority-donate-multiplmain(넣을거):31, c(비교군):32
+e2) Main thread should hamain(넣을거):31, c(비교군):32
+ve priority 36.  Acmain(넣을거):31, c(비교군):32
+tual priority: 31.
+(prioritmain(넣을거):31, c(비교군):32
+y-donate-multiple2) Mainmain(넣을거):31, c(비교군):32
+ thread should hamain(넣을거):31, c(비교군):32
+ve priority 36.  Actual priority:main(넣을거):31, c(비교군):32
+ 31.
+(priority-donate-multiple2) Threamain(넣을거):31, c(비교군):32
+ds b, a, c should havmain(넣을거):31, c(비교군):32
+e just finished, in that main(넣을거):31, c(비교군):32
+order.
+(priority-dmain(넣을거):31, c(비교군):32
+onate-multipmain(넣을거):31, c(비교군):32
+le2) Main thread should have main(넣을거):31, c(비교군):32
+priority 31.  Amain(넣을거):31, c(비교군):32
+ctual priority: main(넣을거):31, c(비교군):32
+31.
+(priority-donate-multiple2) emain(넣을거):31, c(비교군):32
+nd
+Executiomain(넣을거):31, c(비교군):32
+n of 'priority-donate-multmain(넣을거):31, c(비교군):32
+iple2' complete.
+main(넣을거):31, c(비교군):32
+Timer: 134 ticks
+Thread: 0main(넣을거):31, c(비교군):32
+ idle ticks, 135 kernel ticksmain(넣을거):31, c(비교군):32
+, 0 user ticks
+Console: 2108 cmain(넣을거):31, c(비교군):32
+haracters output
+Keyboarmain(넣을거):31, c(비교군):32
+d: 0 keys pressedmain(넣을거):31, c(비교군):32
 
-(priority-donate-multiple2) Threads b, a, c should have just finished, in that order.
-(priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
-(priority-donate-multiple2) end
-Execution of 'priority-donate-multiple2' complete.
-Timer: 84 ticks
-Thread: 0 idle ticks, 85 kernel ticks, 0 user ticks
-Console: 1046 characters output
-Keyboard: 0 keys pressed
 Powering off...

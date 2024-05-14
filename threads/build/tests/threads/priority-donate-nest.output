@@ -7,20 +7,49 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  78,540,800 loops/s.
+Calibrating timer...  65,433,600 loops/s.
 Boot complete.
 Executing 'priority-donate-nest':
 (priority-donate-nest) begin
-(priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
-(priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
-(priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
-(priority-donate-nest) Medium thread got the lock.
-(priority-donate-nest) Medium thread should just have finished.
-(priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
-(priority-donate-nest) end
-Execution of 'priority-donate-nest' complete.
-Timer: 86 ticks
-Thread: 0 idle ticks, 88 kernel ticks, 0 user ticks
-Console: 982 characters output
-Keyboard: 0 keys pressed
+main(넣을거):31, medium(비교군):32
+main(넣을거):31, medium(비교군):32
+(priority-donate-nestmain(넣을거):31, medium(비교군):32
+) Low thread should have primain(넣을거):31, medium(비교군):32
+ority 32.  Actual main(넣을거):31, medium(비교군):32
+priority: 31.
+high(넣을거):33, medium(비교군):32
+main(넣을거):31, medium(비교군):32
+main(넣을거):31, medium(비교군):32
+main(넣을거):31, medium(비교군):32
+(priority-donmain(넣을거):31, medium(비교군):32
+ate-nest) Low tmain(넣을거):31, medium(비교군):32
+hread should have priorimain(넣을거):31, medium(비교군):32
+ty 33.  Actual priorimain(넣을거):31, medium(비교군):32
+ty: 31.
+main(넣을거):31, medium(비교군):32
+(priority-donate-nestmain(넣을거):31, medium(비교군):32
+) Medium thread smain(넣을거):31, medium(비교군):32
+hould just have fimain(넣을거):31, medium(비교군):32
+nished.
+(priority-main(넣을거):31, medium(비교군):32
+donate-nest) Low threadmain(넣을거):31, medium(비교군):32
+ should have priority 31.main(넣을거):31, medium(비교군):32
+  Actual priority: 31.
+(main(넣을거):31, medium(비교군):32
+priority-donmain(넣을거):31, medium(비교군):32
+ate-nest) end
+Execution main(넣을거):31, medium(비교군):32
+of 'prioritymain(넣을거):31, medium(비교군):32
+-donate-nest' completmain(넣을거):31, medium(비교군):32
+e.
+Timer: 121 ticks
+Thread: 0 idlemain(넣을거):31, medium(비교군):32
+ ticks, 123 kernel ticksmain(넣을거):31, medium(비교군):32
+, 0 user ticks
+Console:main(넣을거):31, medium(비교군):32
+ 1956 characters output
+main(넣을거):31, medium(비교군):32
+Keyboard: 0 kemain(넣을거):31, medium(비교군):32
+ys pressed
 Powering off...
+main(넣을거):31, medium(비교군):32

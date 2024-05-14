@@ -216,6 +216,13 @@ thread_create (const char *name, int priority,
 	/* Add to run queue. */
 	thread_unblock (t);
 
+	struct thread *curr = thread_current (); // 현재 스레드 받아옴
+	//printf("%s:%d, %s:%d\n",curr->name,curr->priority,t->name,t->priority);
+	if (curr->priority < t->priority){
+		//schedule();
+		thread_yield();
+	}
+
 	return tid;
 }
 
@@ -249,7 +256,9 @@ thread_unblock (struct thread *t) {
 
 	old_level = intr_disable ();
 	ASSERT (t->status == THREAD_BLOCKED);
-	list_push_back (&ready_list, &t->elem);
+	//list_push_back (&ready_list, &t->elem);
+	list_insert_ordered(&ready_list, &t->elem, cmp_priority,NULL);
+	
 	t->status = THREAD_READY;
 	intr_set_level (old_level);
 }
@@ -306,13 +315,15 @@ thread_exit (void) {
    may be scheduled again immediately at the scheduler's whim. */
 void
 thread_yield (void) {
-	struct thread *curr = thread_current ();
+	struct thread *cur = thread_current ();
 	enum intr_level old_level;
 
 	ASSERT (!intr_context ());
 	old_level = intr_disable ();
-	if (curr != idle_thread)
-		list_push_back (&ready_list, &curr->elem);
+	if (cur != idle_thread){
+		//list_push_back (&ready_list, &curr->elem);
+		list_insert_ordered(&ready_list, &cur->elem, cmp_priority,NULL);
+	}
 	do_schedule (THREAD_READY);
 	intr_set_level (old_level);
 }
@@ -321,6 +332,7 @@ thread_yield (void) {
 void
 thread_set_priority (int new_priority) {
 	thread_current ()->priority = new_priority;
+	//list_sort(&ready_list,cmp_priority,NULL);
 }
 
 /* Returns the current thread's priority. */
@@ -614,7 +626,6 @@ void thread_sleep (int64_t tick){
 		}
 		printf("잘놈: %s, 일어날 시간:%lld \n",curr->name, curr->wakeup_tick);
 		list_push_back (&sleep_list, &curr->elem);
-		//list_sort(&sleep_list,);
 		thread_block();
 	}
 	//do_schedule (THREAD_READY);
@@ -659,3 +670,15 @@ int64_t check_min_gbl_tick(struct list* list_){
 		intr_set_level (old_level);
 	return min_;
 }
+
+bool cmp_priority(struct list_elem *a, struct list_elem *b, void *aux){
+	struct thread *thread_a = list_entry(a,struct thread, elem); 
+	struct thread *thread_b = list_entry(b,struct thread, elem);
+	printf("%s(넣을거):%d, %s(비교군):%d\n",thread_a->name,thread_a->priority,thread_b->name,thread_b->priority);
+	if (thread_a->priority<thread_b->priority){
+		return 1;
+	}
+	else{
+		return 0;
+	} 
+};

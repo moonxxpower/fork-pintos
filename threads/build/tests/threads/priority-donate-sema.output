@@ -7,15 +7,33 @@ Pintos booting with:
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 스레드 시작
-Calibrating timer...  77,312,000 loops/s.
+Calibrating timer...  78,540,800 loops/s.
 Boot complete.
 Executing 'priority-donate-sema':
 (priority-donate-sema) begin
-(priority-donate-sema) Main thread finished.
-(priority-donate-sema) end
-Execution of 'priority-donate-sema' complete.
-Timer: 46 ticks
-Thread: 0 idle ticks, 47 kernel ticks, 0 user ticks
-Console: 585 characters output
-Keyboard: 0 keys pressed
-Powering off...
+main(넣을거):31, low(비교군):32
+med(넣을거):34, low(비교군):32
+main(넣을거):31, low(비교군):32
+high(넣을거):36, low(비교군):32
+high(넣을거):36, med(비교군):34
+main(넣을거):31, low(비교군):32
+main(넣을거):31, low(비교군):32
+(priority-donate-sema) main(넣을거):31, low(비교군):32
+Main thread finishedmain(넣을거):31, low(비교군):32
+.
+(priority-donate-sema) endmain(넣을거):31, low(비교군):32
+
+Execution of 'priority-donatmain(넣을거):31, low(비교군):32
+e-sema' complete.main(넣을거):31, low(비교군):32
+
+Timer: 66 ticks
+main(넣을거):31, low(비교군):32
+Thread: 0 idle ticks, 7main(넣을거):31, low(비교군):32
+0 kernel ticks,main(넣을거):31, low(비교군):32
+ 0 user ticks
+Console: 1154 chamain(넣을거):31, low(비교군):32
+racters output
+Keyboard:main(넣을거):31, low(비교군):32
+ 0 keys pressed
+Poweringmain(넣을거):31, low(비교군):32
+ off...

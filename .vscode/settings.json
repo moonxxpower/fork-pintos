@@ -11,6 +11,7 @@
         "thread.h": "c",
         "list.h": "c",
         "stddef.h": "c",
-        "debug.h": "c"
-    }
+        "debug.h": "c",
+        "cstdio": "c"
+    },
 }
