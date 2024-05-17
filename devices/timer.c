@@ -95,11 +95,8 @@ timer_sleep (int64_t ticks) {
 	// while (timer_elapsed (start) < ticks)
 	// 	thread_yield ();
 	if(timer_elapsed(start)<ticks){
-		// printf("하나 재우러 들어옴\n");
 		thread_sleep(start+ticks);
 	}
-		
-	
 }
 
 /* Suspends execution for approximately MS milliseconds. */
@@ -188,5 +185,28 @@ real_time_sleep (int64_t num, int32_t denom) {
 		   down by 1000 to avoid the possibility of overflow. */
 		ASSERT (denom % 1000 == 0);
 		busy_wait (loops_per_tick * num / 1000 * TIMER_FREQ / (denom / 1000));
+	}
+}
+
+void check_wake_up (int64_t tick){
+	struct list_elem *e;
+	enum intr_level old_level;
+	old_level = intr_disable ();
+	e = list_begin(&sleep_list);
+	if(tick>=min_gbl_tick){
+	//printf("현재 시간: %lld, gbl_tick:%lld\n", tick, min_gbl_tick);
+		while (e != list_end(&sleep_list)) {
+			struct thread *thr = list_entry(e,struct thread, elem);
+			if (thr->wakeup_tick<= tick){
+				// printf("일어날놈: %s\n",thr->name);
+				e = list_remove(&thr->elem);
+				min_gbl_tick = check_min_gbl_tick(&sleep_list);
+				thread_unblock(thr);
+			}
+			else{
+				e = list_next(e);
+			}
+		}
+		intr_set_level (old_level);
 	}
 }

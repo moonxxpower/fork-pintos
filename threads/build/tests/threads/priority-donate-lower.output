@@ -1,54 +1,24 @@
 Kernel command line: -q run priority-donate-lower
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
 Calibrating timer...  78,540,800 loops/s.
 Boot complete.
 Executing 'priority-donate-lower':
 (priority-donate-lower) begin
-main(넣을거):31, acquire(비교군):41
-(priority-donate-main(넣을거):31, acquire(비교군):41
-lower) Main threamain(넣을거):31, acquire(비교군):41
-d should havemain(넣을거):31, acquire(비교군):41
- priority 41.  Actual priority: main(넣을거):31, acquire(비교군):41
-31.
-(priority-donate-lower) Lowemain(넣을거):31, acquire(비교군):41
-ring base priority...
-main(넣을거):31, acquire(비교군):41
-main(넣을거):21, acquire(비교군):41
-(main(넣을거):21, acquire(비교군):41
-priority-donate-lower) Mmain(넣을거):21, acquire(비교군):41
-ain thread should have priority main(넣을거):21, acquire(비교군):41
-41.  Actual priority: 21.
-(priomain(넣을거):21, acquire(비교군):41
-rity-donate-lomain(넣을거):21, acquire(비교군):41
-wer) acquire must already have main(넣을거):21, acquire(비교군):41
-finished.
-(priority-donatmain(넣을거):21, acquire(비교군):41
-e-lower) Main thread should main(넣을거):21, acquire(비교군):41
-have priority 21.  main(넣을거):21, acquire(비교군):41
-Actual priority: 21.
-(priority-donamain(넣을거):21, acquire(비교군):41
-te-lower) end
-Exmain(넣을거):21, acquire(비교군):41
-ecution of 'priorimain(넣을거):21, acquire(비교군):41
-ty-donate-lower' complmain(넣을거):21, acquire(비교군):41
-ete.
-Timer: main(넣을거):21, acquire(비교군):41
-114 ticks
-main(넣을거):21, acquire(비교군):41
-Thread: 0 idle ticks, 120 kernel ticmain(넣을거):21, acquire(비교군):41
-ks, 0 user ticks
-main(넣을거):21, acquire(비교군):41
-Console: 1main(넣을거):21, acquire(비교군):41
-956 charactmain(넣을거):21, acquire(비교군):41
-ers output
-Keyboard: 0main(넣을거):21, acquire(비교군):41
- keys pressed
-main(넣을거):21, acquire(비교군):41
+(priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
+(priority-donate-lower) Lowering base priority...
+(priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
+(priority-donate-lower) acquire: got the lock
+(priority-donate-lower) acquire: done
+(priority-donate-lower) acquire must already have finished.
+(priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
+(priority-donate-lower) end
+Execution of 'priority-donate-lower' complete.
+Timer: 76 ticks
+Thread: 0 idle ticks, 78 kernel ticks, 0 user ticks
+Console: 904 characters output
+Keyboard: 0 keys pressed
 Powering off...

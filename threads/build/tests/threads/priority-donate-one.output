@@ -1,50 +1,25 @@
 Kernel command line: -q run priority-donate-one
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
 Calibrating timer...  78,540,800 loops/s.
 Boot complete.
 Executing 'priority-donate-one':
 (priority-donate-one) begin
-main(넣을거):31, acquire1(비교군):32
-(priority-donate-main(넣을거):31, acquire1(비교군):32
-one) This thread should havmain(넣을거):31, acquire1(비교군):32
-e priority 32.  Actual primain(넣을거):31, acquire1(비교군):32
-ority: 31.
-acquire2(넣을거):33, acquire1(비교군):32
-main(넣을거):31, acquire1(비교군):32
-main(넣을거):31, acquire1(비교군):32
-(priority-donate-main(넣을거):31, acquire1(비교군):32
-one) This thread should havmain(넣을거):31, acquire1(비교군):32
-e priority 33.  Actualmain(넣을거):31, acquire1(비교군):32
- priority: 31.
-(priority-donatemain(넣을거):31, acquire1(비교군):32
--one) acquire2, acquire1 mustmain(넣을거):31, acquire1(비교군):32
- already have finishemain(넣을거):31, acquire1(비교군):32
-d, in that order.
-main(넣을거):31, acquire1(비교군):32
-(priority-donate-onemain(넣을거):31, acquire1(비교군):32
-) This should be the last main(넣을거):31, acquire1(비교군):32
-line before finishing tmain(넣을거):31, acquire1(비교군):32
-his test.
-(priority-donatmain(넣을거):31, acquire1(비교군):32
-e-one) end
-Execution ofmain(넣을거):31, acquire1(비교군):32
- 'priority-donate-one'main(넣을거):31, acquire1(비교군):32
- complete.
-Timemain(넣을거):31, acquire1(비교군):32
-r: 105 ticks
-Thread: 0 idlmain(넣을거):31, acquire1(비교군):32
-e ticks, 109 kernel tmain(넣을거):31, acquire1(비교군):32
-icks, 0 user ticks
-Console: 1855 chmain(넣을거):31, acquire1(비교군):32
-aracters output
-Keyboamain(넣을거):31, acquire1(비교군):32
-rd: 0 keys pressed
-Powering off...main(넣을거):31, acquire1(비교군):32
-
+(priority-donate-one) This thread should have priority 32.  Actual priority: 32.
+(priority-donate-one) This thread should have priority 33.  Actual priority: 33.
+(priority-donate-one) acquire2: got the lock
+(priority-donate-one) acquire2: done
+(priority-donate-one) acquire1: got the lock
+(priority-donate-one) acquire1: done
+(priority-donate-one) acquire2, acquire1 must already have finished, in that order.
+(priority-donate-one) This should be the last line before finishing this test.
+(priority-donate-one) end
+Execution of 'priority-donate-one' complete.
+Timer: 84 ticks
+Thread: 0 idle ticks, 85 kernel ticks, 0 user ticks
+Console: 940 characters output
+Keyboard: 0 keys pressed
+Powering off...

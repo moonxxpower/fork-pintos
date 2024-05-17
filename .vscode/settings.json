@@ -12,6 +12,17 @@
         "list.h": "c",
         "stddef.h": "c",
         "debug.h": "c",
-        "cstdio": "c"
+        "cstdio": "c",
+        "__threading_support": "c",
+        "stdio.h": "c",
+        "palloc.h": "c",
+        "intrinsic.h": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c",
+        "stdbool.h": "c",
+        "timer.h": "c"
     },
 }

@@ -1,39 +1,24 @@
 Kernel command line: -q run priority-donate-sema
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
-Calibrating timer...  78,540,800 loops/s.
+Calibrating timer...  65,433,600 loops/s.
 Boot complete.
 Executing 'priority-donate-sema':
 (priority-donate-sema) begin
-main(넣을거):31, low(비교군):32
-med(넣을거):34, low(비교군):32
-main(넣을거):31, low(비교군):32
-high(넣을거):36, low(비교군):32
-high(넣을거):36, med(비교군):34
-main(넣을거):31, low(비교군):32
-main(넣을거):31, low(비교군):32
-(priority-donate-sema) main(넣을거):31, low(비교군):32
-Main thread finishedmain(넣을거):31, low(비교군):32
-.
-(priority-donate-sema) endmain(넣을거):31, low(비교군):32
-
-Execution of 'priority-donatmain(넣을거):31, low(비교군):32
-e-sema' complete.main(넣을거):31, low(비교군):32
-
-Timer: 66 ticks
-main(넣을거):31, low(비교군):32
-Thread: 0 idle ticks, 7main(넣을거):31, low(비교군):32
-0 kernel ticks,main(넣을거):31, low(비교군):32
- 0 user ticks
-Console: 1154 chamain(넣을거):31, low(비교군):32
-racters output
-Keyboard:main(넣을거):31, low(비교군):32
- 0 keys pressed
-Poweringmain(넣을거):31, low(비교군):32
- off...
+(priority-donate-sema) Thread L acquired lock.
+(priority-donate-sema) Thread L downed semaphore.
+(priority-donate-sema) Thread H acquired lock.
+(priority-donate-sema) Thread H finished.
+(priority-donate-sema) Thread M finished.
+(priority-donate-sema) Thread L finished.
+(priority-donate-sema) Main thread finished.
+(priority-donate-sema) end
+Execution of 'priority-donate-sema' complete.
+Timer: 61 ticks
+Thread: 0 idle ticks, 62 kernel ticks, 0 user ticks
+Console: 771 characters output
+Keyboard: 0 keys pressed
+Powering off...

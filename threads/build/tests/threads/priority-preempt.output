@@ -1,25 +1,24 @@
 Kernel command line: -q run priority-preempt
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
-현재 우선순위:31, 새거 우선순위:0
-Calibrating timer...  58,880,000 loops/s.
+Calibrating timer...  91,648,000 loops/s.
 Boot complete.
 Executing 'priority-preempt':
 (priority-preempt) begin
-현재 우선순위:31, 새거 우선순위:32
-새거가 더 우선순위 높음
 (priority-preempt) Thread high-priority iteration 0
+(priority-preempt) Thread high-priority iteration 1
+(priority-preempt) Thread high-priority iteration 2
+(priority-preempt) Thread high-priority iteration 3
+(priority-preempt) Thread high-priority iteration 4
+(priority-preempt) Thread high-priority done!
 (priority-preempt) The high-priority thread should have already completed.
 (priority-preempt) end
 Execution of 'priority-preempt' complete.
-Timer: 65 ticks
-Thread: 0 idle ticks, 67 kernel ticks, 0 user ticks
-Console: 774 characters output
+Timer: 73 ticks
+Thread: 0 idle ticks, 75 kernel ticks, 0 user ticks
+Console: 817 characters output
 Keyboard: 0 keys pressed
 Powering off...

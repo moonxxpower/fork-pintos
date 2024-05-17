@@ -99,7 +99,6 @@ int64_t min_gbl_tick = INT64_MAX;
    finishes. */
 void
 thread_init (void) {
-	printf("스레드 초기화\n");
 	ASSERT (intr_get_level () == INTR_OFF);
 
 	/* Reload the temporal gdt for the kernel
@@ -114,7 +113,7 @@ thread_init (void) {
 	/* Init the globla thread context */
 	lock_init (&tid_lock);
 	list_init (&ready_list);
-	list_init (&sleep_list); // 블록 리스트 초기화 추가
+	list_init (&sleep_list); // 슬립 리스트 초기화 추가
 	list_init (&destruction_req);
 
 	/* Set up a thread structure for the running thread. */
@@ -122,14 +121,15 @@ thread_init (void) {
 	init_thread (initial_thread, "main", PRI_DEFAULT); // 이름 및 기타 초기화
 	initial_thread->status = THREAD_RUNNING; // 상태 러닝으로 변경
 	initial_thread->tid = allocate_tid (); // tid 부여
-	printf("initial_thread 이름:%s, 상태:%d, 번호:%d\n", initial_thread->name,initial_thread->status,initial_thread->tid );
+	// printf("initial_thread 이름:%s, 상태:%d, 번호:%d\n", initial_thread->name,initial_thread->status,initial_thread->tid );
+
+
 }
 
 /* Starts preemptive thread scheduling by enabling interrupts.
    Also creates the idle thread. */
 void
 thread_start (void) {
-	printf("스레드 시작\n");
 	/* Create the idle thread. */
 	struct semaphore idle_started;
 	sema_init (&idle_started, 0);
@@ -218,11 +218,11 @@ thread_create (const char *name, int priority,
 
 	struct thread *curr = thread_current (); // 현재 스레드 받아옴
 	//printf("%s:%d, %s:%d\n",curr->name,curr->priority,t->name,t->priority);
-	if (curr->priority < t->priority){
-		//schedule();
-		thread_yield();
-	}
-
+	// if (curr->priority < t->priority){
+	// 	//schedule();
+	// 	thread_yield();
+	// }
+	check_thread_priority();
 	return tid;
 }
 
@@ -325,6 +325,8 @@ thread_yield (void) {
 		list_insert_ordered(&ready_list, &cur->elem, cmp_priority,NULL);
 	}
 	do_schedule (THREAD_READY);
+	//cur->status = THREAD_READY;
+	//schedule();
 	intr_set_level (old_level);
 }
 
@@ -332,7 +334,9 @@ thread_yield (void) {
 void
 thread_set_priority (int new_priority) {
 	thread_current ()->priority = new_priority;
-	//list_sort(&ready_list,cmp_priority,NULL);
+	thread_current ()->init_priority = new_priority;
+	check_remain_donations();
+	check_thread_priority();
 }
 
 /* Returns the current thread's priority. */
@@ -430,6 +434,11 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t->tf.rsp = (uint64_t) t + PGSIZE - sizeof (void *);
 	t->priority = priority;
 	t->magic = THREAD_MAGIC;
+
+	// donation을 위한 값 초기화
+	t->init_priority = priority;
+	t->wait_on_lock = NULL;
+	list_init(&t->donations);
 }
 
 /* Chooses and returns the next thread to be scheduled.  Should
@@ -619,12 +628,10 @@ void thread_sleep (int64_t tick){
 	ASSERT (!intr_context ());
 	old_level = intr_disable ();
 	if (curr != idle_thread){
-		// printf("%s 재움\n",curr->name);
 		curr->wakeup_tick= tick;
 		if (min_gbl_tick>curr->wakeup_tick){
 			min_gbl_tick = curr->wakeup_tick;
 		}
-		printf("잘놈: %s, 일어날 시간:%lld \n",curr->name, curr->wakeup_tick);
 		list_push_back (&sleep_list, &curr->elem);
 		thread_block();
 	}
@@ -632,28 +639,6 @@ void thread_sleep (int64_t tick){
 	intr_set_level (old_level);
 }
 
-void check_wake_up (int64_t tick){
-	struct list_elem *e;
-	enum intr_level old_level;
-	old_level = intr_disable ();
-	e = list_begin(&sleep_list);
-	if(tick>=min_gbl_tick){
-	printf("현재 시간: %lld, gbl_tick:%lld\n", tick, min_gbl_tick);
-		while (e != list_end(&sleep_list)) {
-			struct thread *thr = list_entry(e,struct thread, elem);
-			if (thr->wakeup_tick<= tick){
-				printf("일어날놈: %s\n",thr->name);
-				e = list_remove(&thr->elem);
-				min_gbl_tick = check_min_gbl_tick(&sleep_list);
-				thread_unblock(thr);
-			}
-			else{
-				e = list_next(e);
-			}
-		}
-		intr_set_level (old_level);
-	}
-}
 
 int64_t check_min_gbl_tick(struct list* list_){
 	struct list_elem *e = list_begin(list_);
@@ -674,11 +659,16 @@ int64_t check_min_gbl_tick(struct list* list_){
 bool cmp_priority(struct list_elem *a, struct list_elem *b, void *aux){
 	struct thread *thread_a = list_entry(a,struct thread, elem); 
 	struct thread *thread_b = list_entry(b,struct thread, elem);
-	printf("%s(넣을거):%d, %s(비교군):%d\n",thread_a->name,thread_a->priority,thread_b->name,thread_b->priority);
-	if (thread_a->priority<thread_b->priority){
-		return 1;
-	}
-	else{
-		return 0;
-	} 
+	if (thread_a->priority>thread_b->priority)
+		return true;
+	else
+		return false;
 };
+
+void check_thread_priority(void){
+	if(!(list_empty(&ready_list)) && 
+	thread_current()->priority < 
+	list_entry(list_front(&ready_list),struct thread,elem)->priority){
+		thread_yield();
+	}
+}

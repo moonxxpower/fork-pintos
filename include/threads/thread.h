@@ -94,6 +94,12 @@ struct thread {
 
 	/* Shared between thread.c and synch.c. */
 	struct list_elem elem;              /* List element. */
+	
+	int init_priority;					/* 우선순위를 양도 받았을때 돌아갈 처음 초기 우선순위 */
+	struct lock *wait_on_lock;				/* 원해서 기다리는 lock */
+	struct list donations;				/* 스레드에게 우선순위 기부한 스레드들 */
+	struct list_elem d_elem;		/* 기부한 스레드 리스트를 관리하기 위한 elem */
+
 
 	int64_t wakeup_tick; // 깨우는틱? tick till wake up
 #ifdef USERPROG
@@ -145,7 +151,6 @@ int thread_get_load_avg (void);
 void do_iret (struct intr_frame *tf);
 
 void thread_sleep (int64_t tick);
-void check_wake_up (int64_t tick);
 bool cmp_priority(struct list_elem *a, struct list_elem *b, void *aux);
-void check_first_thread(void);
+void check_thread_priority(void);
 #endif /* threads/thread.h */

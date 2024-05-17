@@ -1,61 +1,47 @@
 Kernel command line: -q run priority-condvar
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
-현재 우선순위:31, 새거 우선순위:0
-Calibrating timer...  54,374,400 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 Boot complete.
 Executing 'priority-condvar':
 (priority-condvar) begin
-현재 우선순위:0, 새거 우선순위:23
-새거가 더 우선순위 높음
 (priority-condvar) Thread priority 23 starting.
 (priority-condvar) Thread priority 22 starting.
-현재 우선순위:0, 새거 우선순위:22
-새거가 더 우선순위 높음
-현재 우선순위:0, 새거 우선순위:21
-새거가 더 우선순위 높음
 (priority-condvar) Thread priority 21 starting.
 (priority-condvar) Thread priority 30 starting.
-현재 우선순위:0, 새거 우선순위:30
-새거가 더 우선순위 높음
-현재 우선순위:0, 새거 우선순위:29
-새거가 더 우선순위 높음
 (priority-condvar) Thread priority 29 starting.
 (priority-condvar) Thread priority 28 starting.
-현재 우선순위:0, 새거 우선순위:28
-새거가 더 우선순위 높음
-현재 우선순위:0, 새거 우선순위:27
-새거가 더 우선순위 높음
 (priority-condvar) Thread priority 27 starting.
 (priority-condvar) Thread priority 26 starting.
-현재 우선순위:0, 새거 우선순위:26
-새거가 더 우선순위 높음
-현재 우선순위:0, 새거 우선순위:25
-새거가 더 우선순위 높음
 (priority-condvar) Thread priority 25 starting.
 (priority-condvar) Thread priority 24 starting.
-현재 우선순위:0, 새거 우선순위:24
-새거가 더 우선순위 높음
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 30 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 29 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 28 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 27 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 26 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 25 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 24 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 23 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 22 woke up.
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 21 woke up.
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-Timer: 229 ticks
-Thread: 0 idle ticks, 232 kernel ticks, 0 user ticks
-Console: 2168 characters output
+Timer: 143 ticks
+Thread: 0 idle ticks, 144 kernel ticks, 0 user ticks
+Console: 1709 characters output
 Keyboard: 0 keys pressed
 Powering off...

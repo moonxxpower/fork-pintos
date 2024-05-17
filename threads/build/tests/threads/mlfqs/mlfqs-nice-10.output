@@ -1,57 +1,17 @@
 Kernel command line: -q -mlfqs run mlfqs-nice-10
-스레드 초기화
-initial_thread 이름:main, 상태:0, 번호:1
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-스레드 시작
-Calibrating timer...  78,540,800 loops/s.
+Calibrating timer...  52,377,600 loops/s.
 Boot complete.
 Executing 'mlfqs-nice-10':
-(mlfqs-nice-10) begin
-(mlfqs-nice-10) Starting 10 threads...
-(mlfqs-nice-10) Starting threads took 4 ticks.
-(mlfqs-nice-10) Sleeping 40 seconds to let threads run, please wait...
-잘놈: main, 일어날 시간:4047 
-잘놈: load 4, 일어날 시간:533 
-잘놈: load 5, 일어날 시간:533 
-잘놈: load 6, 일어날 시간:533 
-잘놈: load 7, 일어날 시간:533 
-잘놈: load 8, 일어날 시간:533 
-잘놈: load 9, 일어날 시간:533 
-잘놈: load 0, 일어날 시간:533 
-잘놈: load 1, 일어날 시간:533 
-잘놈: load 2, 일어날 시간:533 
-잘놈: load 3, 일어날 시간:533 
-현재 시간: 533, gbl_tick:533
-일어날놈: load 4
-일어날놈: load 5
-일어날놈: load 6
-일어날놈: load 7
-일어날놈: load 8
-일어날놈: load 9
-일어날놈: load 0
-일어날놈: load 1
-일어날놈: load 2
-일어날놈: load 3
-현재 시간: 4047, gbl_tick:4047
-일어날놈: main
-(mlfqs-nice-10) Thread 0 received 300 ticks.
-(mlfqs-nice-10) Thread 1 received 299 ticks.
-(mlfqs-nice-10) Thread 2 received 299 ticks.
-(mlfqs-nice-10) Thread 3 received 298 ticks.
-(mlfqs-nice-10) Thread 4 received 301 ticks.
-(mlfqs-nice-10) Thread 5 received 300 ticks.
-(mlfqs-nice-10) Thread 6 received 301 ticks.
-(mlfqs-nice-10) Thread 7 received 301 ticks.
-(mlfqs-nice-10) Thread 8 received 301 ticks.
-(mlfqs-nice-10) Thread 9 received 301 ticks.
-(mlfqs-nice-10) end
-Execution of 'mlfqs-nice-10' complete.
-Timer: 4104 ticks
-Thread: 1003 idle ticks, 3103 kernel ticks, 0 user ticks
-Console: 1840 characters output
-Keyboard: 0 keys pressed
-Powering off...
+Kernel PANIC at ../../tests/threads/tests.c:60 in run_test(): no test named "mlfqs-nice-10"
+Call stack: 0x8004213990 0x8004216e3e 0x8004206636 0x8004206783 0x8004206120.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 26 ticks
+Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
+Console: 
