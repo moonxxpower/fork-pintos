@@ -23,6 +23,7 @@
         "string_view": "c",
         "vector": "c",
         "stdbool.h": "c",
-        "timer.h": "c"
+        "timer.h": "c",
+        "fixed_point.h": "c"
     },
 }

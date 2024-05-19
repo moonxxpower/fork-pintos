@@ -192,14 +192,15 @@ lock_acquire (struct lock *lock) {
 	ASSERT (!lock_held_by_current_thread (lock));
 
 	struct thread *cur = thread_current (); // 현재 스레드 저장
-	
+
 	if(lock->holder){
 		//printf("lock 주인 있음: %s\n",lock->holder->name);
 		cur->wait_on_lock=lock; // 현재 스레드가 필요한 lock 기록해둠		
 		list_insert_ordered(&lock->holder->donations,&cur->d_elem,donation_cmp_priority,NULL);
-		donate_priority();
+		if(!thread_mlfqs){
+			donate_priority();
+		}
 	}
-
 	sema_down (&lock->semaphore);
 	
 	cur->wait_on_lock = NULL;
@@ -237,8 +238,10 @@ lock_release (struct lock *lock) {
 	ASSERT (lock != NULL);
 	ASSERT (lock_held_by_current_thread (lock));
 
-	find_and_remove_lock(lock);
-	check_remain_donations();
+	if(!thread_mlfqs){
+		find_and_remove_lock(lock);
+		check_remain_donations();
+	}
 	lock->holder = NULL;
 	sema_up (&lock->semaphore);
 }

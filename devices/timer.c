@@ -128,6 +128,16 @@ static void
 timer_interrupt (struct intr_frame *args UNUSED) {
 	ticks++;
 	thread_tick ();
+	if(thread_mlfqs){;
+		mlfqs_increment();
+		if (ticks % 4 == 0){
+			mlfqs_recalc_priority();
+		}
+		if(ticks % 100 == 0){
+			mlfqs_load_avg();
+			mlfqs_recalc_recent_cpu();
+		}
+	}
 	check_wake_up(ticks);
 }
 
@@ -188,25 +198,3 @@ real_time_sleep (int64_t num, int32_t denom) {
 	}
 }
 
-void check_wake_up (int64_t tick){
-	struct list_elem *e;
-	enum intr_level old_level;
-	old_level = intr_disable ();
-	e = list_begin(&sleep_list);
-	if(tick>=min_gbl_tick){
-	//printf("현재 시간: %lld, gbl_tick:%lld\n", tick, min_gbl_tick);
-		while (e != list_end(&sleep_list)) {
-			struct thread *thr = list_entry(e,struct thread, elem);
-			if (thr->wakeup_tick<= tick){
-				// printf("일어날놈: %s\n",thr->name);
-				e = list_remove(&thr->elem);
-				min_gbl_tick = check_min_gbl_tick(&sleep_list);
-				thread_unblock(thr);
-			}
-			else{
-				e = list_next(e);
-			}
-		}
-		intr_set_level (old_level);
-	}
-}
