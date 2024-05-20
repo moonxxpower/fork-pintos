@@ -19,5 +19,4 @@ void timer_usleep (int64_t microseconds);
 void timer_nsleep (int64_t nanoseconds);
 
 void timer_print_stats (void);
-void check_wake_up (int64_t tick);
 #endif /* devices/timer.h */
