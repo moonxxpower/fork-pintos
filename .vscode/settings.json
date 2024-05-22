@@ -24,6 +24,9 @@
         "vector": "c",
         "stdbool.h": "c",
         "timer.h": "c",
-        "fixed_point.h": "c"
+        "fixed_point.h": "c",
+        "gdt.h": "c",
+        "tss.h": "c",
+        "lib.h": "c"
     },
 }

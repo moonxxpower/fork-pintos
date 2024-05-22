@@ -130,15 +130,18 @@ timer_interrupt (struct intr_frame *args UNUSED) {
 	thread_tick ();
 	if(thread_mlfqs){;
 		mlfqs_increment();
-		if (ticks % 4 == 0){
+		if (timer_ticks() % 4 == 0){
 			mlfqs_recalc_priority();
 		}
-		if(ticks % 100 == 0){
+		if(timer_ticks() % 100 == 0){
 			mlfqs_load_avg();
 			mlfqs_recalc_recent_cpu();
 		}
 	}
+	//if (min_gbl_tick<= ticks){
 	check_wake_up(ticks);
+	//}
+	//check_thread_priority();
 }
 
 /* Returns true if LOOPS iterations waits for more than one timer
