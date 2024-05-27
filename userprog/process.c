@@ -42,7 +42,6 @@ tid_t
 process_create_initd (const char *file_name) {
 	char *fn_copy;
 	tid_t tid;
-	printf("f_name은 무었일까요? :%s\n", file_name);
 
 	/* Make a copy of FILE_NAME.
 	 * Otherwise there's a race between the caller and load(). */
@@ -51,12 +50,12 @@ process_create_initd (const char *file_name) {
 		return TID_ERROR;
 	strlcpy (fn_copy, file_name, PGSIZE);
 	
-	char *token, *save_ptr;
-	file_name = strtok_r (file_name, " ", &save_ptr);
-	
-	/* Create a new thread to execute FILE_NAME. */
+	/* 첫 번째 토큰을 thread_create() 함수의 첫 인자(thread name)로 전달 */	
+	char *save_ptr;
+	strtok_r(file_name, " ", &save_ptr);
+
+	/* Create a new thread to execute FILE_NAME. */	
 	tid = thread_create (file_name, PRI_DEFAULT, initd, fn_copy);
-	printf("tid는 무었일까요? :%d\n", tid);
 	if (tid == TID_ERROR)
 		palloc_free_page (fn_copy);
 	return tid;
@@ -68,7 +67,6 @@ initd (void *f_name) {
 #ifdef VM
 	supplemental_page_table_init (&thread_current ()->spt);
 #endif
-	printf("initd 들어옴 : %s",f_name);
 	process_init ();
 
 	if (process_exec (f_name) < 0)
@@ -169,11 +167,12 @@ int
 process_exec (void *f_name) {
 	char *file_name = f_name;
 	bool success;
-
 	
 	/* We cannot use the intr_frame in the thread structure.
 	 * This is because when current thread rescheduled,
 	 * it stores the execution information to the member. */
+
+	/* Interrupt frame은 interrupt와 같은 요청이 들어와서 기존까지 실행 중이던 context를 stack에 저장하기 위한 struct이다. */
 	struct intr_frame _if;
 	_if.ds = _if.es = _if.ss = SEL_UDSEG;
 	_if.cs = SEL_UCSEG;
@@ -189,6 +188,9 @@ process_exec (void *f_name) {
 	palloc_free_page (file_name);
 	if (!success)
 		return -1;
+	
+	/* 메모리 내용을 16진수 형식으로 출력해줘서 stack에 저장된 값을 확인할 수 있는 hex_dump() 사용하기 */
+	hex_dump(_if.rsp, _if.rsp, USER_STACK - _if.rsp, true);
 
 	/* Start switched process. */
 	do_iret (&_if);
@@ -210,6 +212,10 @@ process_wait (tid_t child_tid UNUSED) {
 	/* XXX: Hint) The pintos exit if process_wait (initd), we recommend you
 	 * XXX:       to add infinite loop here before
 	 * XXX:       implementing the process_wait. */
+	while(true) {
+		
+	}
+
 	return -1;
 }
 
@@ -341,6 +347,20 @@ load (const char *file_name, struct intr_frame *if_) {
 		goto done;
 	process_activate (thread_current ());
 
+	/* Parsing */
+	char *argv[128];
+	char *token, *save_ptr;
+	int argc = 0;
+
+	token = strtok_r(file_name, " ", &save_ptr);
+	argv[argc] = token;
+
+	while (token != NULL) {
+		token = strtok_r(NULL, " ", &save_ptr);    // strtok_r() 함수는 첫 번째 호출 시에는 원본 문자열을 전달하고, 이후 호출 시에는 NULL을 전달해야 한다.
+		argc++;
+		argv[argc] = token;
+	}
+
 	/* Open executable file. */
 	file = filesys_open (file_name);
 	if (file == NULL) {
@@ -422,6 +442,10 @@ load (const char *file_name, struct intr_frame *if_) {
 
 	/* TODO: Your code goes here.
 	 * TODO: Implement argument passing (see project2/argument_passing.html). */
+	argument_stack(argv, argc, &if_->rsp);
+	
+	if_->R.rdi = argc;
+	if_->R.rsi = if_->rsp + 8;
 
 	success = true;
 
@@ -575,6 +599,39 @@ install_page (void *upage, void *kpage, bool writable) {
 	return (pml4_get_page (t->pml4, upage) == NULL
 			&& pml4_set_page (t->pml4, upage, kpage, writable));
 }
+
+void 
+argument_stack(char **parse, int count, void **esp) {
+	char *argv_address[count];
+	uint8_t size = 0;
+
+	for (int i = count - 1; -1 < i; i--) {
+		*esp -= (strlen(parse[i]) + 1);
+		memcpy(*esp, parse[i], strlen(parse[i]) + 1);
+		size += strlen(parse[i]) + 1;
+		argv_address[i] = *esp;
+	}
+
+	if (size % 8) {
+		for (int i = (8 - (size % 8)); 0 < i; i--) {
+			*esp -= 1;
+		}
+
+		**(char **)esp = 0;
+	}
+	
+	*esp -= 8;
+	**(char **)esp = 0;
+
+	for (int i = count - 1; -1 < i; i--) {
+		*esp = *esp - 8;
+		memcpy(*esp, &argv_address[i], strlen(&argv_address[i]));
+	}
+
+	*esp = *esp - 8;
+	**(char **)esp = 0;
+}
+
 #else
 /* From here, codes will be used after project 3.
  * If you want to implement the function for only project 2, implement it on the
