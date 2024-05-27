@@ -127,13 +127,10 @@ thread_init (void) {
 	list_init (&all_list);
 
 	/* Set up a thread structure for the running thread. */
-	initial_thread = running_thread (); // 초기 쓰레드 초기화
+	initial_thread = running_thread (); // 초기 스레드 초기화
 	init_thread (initial_thread, "main", PRI_DEFAULT); // 이름 및 기타 초기화
 	initial_thread->status = THREAD_RUNNING; // 상태 러닝으로 변경
 	initial_thread->tid = allocate_tid (); // tid 부여
-	// printf("initial_thread 이름:%s, 상태:%d, 번호:%d\n", initial_thread->name,initial_thread->status,initial_thread->tid );
-
-
 }
 
 /* Starts preemptive thread scheduling by enabling interrupts.
@@ -475,7 +472,6 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t->priority = priority;
 	t->magic = THREAD_MAGIC;
 
-
 	// donation을 위한 값 초기화
 	t->init_priority = priority;
 	t->wait_on_lock = NULL;
@@ -485,6 +481,9 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t->nice = NICE_DEFAULT;
 	t->recent_cpu = RECENT_CPU_DEFAULT;
 	list_push_back (&all_list, &t->allelem);
+
+	/* 종료 상태 초기화 */
+	t->exit_status = 0;
 }
 
 /* Chooses and returns the next thread to be scheduled.  Should

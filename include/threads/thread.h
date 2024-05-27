@@ -97,15 +97,18 @@ struct thread {
 	struct list_elem allelem;
 
 	int init_priority;					/* 우선순위를 양도 받았을때 돌아갈 처음 초기 우선순위 */
-	struct lock *wait_on_lock;				/* 원해서 기다리는 lock */
+	struct lock *wait_on_lock;			/* 원해서 기다리는 lock */
 	struct list donations;				/* 스레드에게 우선순위 기부한 스레드들 */
-	struct list_elem d_elem;		/* 기부한 스레드 리스트를 관리하기 위한 elem */
+	struct list_elem d_elem;		    /* 기부한 스레드 리스트를 관리하기 위한 elem */
 	
 	/* mlfq를 위한 초기화 */
 	int nice;
 	int recent_cpu;
 
 	int64_t wakeup_tick; // 깨우는틱? tick till wake up
+
+	int exit_status;                    /* 종료 상태(어떻게 종료되었는지?) */
+
 #ifdef USERPROG
 	/* Owned by userprog/process.c. */
 	uint64_t *pml4;                     /* Page map level 4 */
